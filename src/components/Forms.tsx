@@ -2,7 +2,8 @@
 import { useFormik } from "formik"
 import formikConfig from "../importants/useFormikYupOne"
 import {setName, setEmail, setGender} from '../assets/ReduxSlices/formSlice'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+
 
 
 
@@ -41,6 +42,9 @@ export default function Forms() {
 
   };
 
+  const data = useSelector((state:any)=>state.fetch.data)
+  const loading = useSelector((state:any)=>state.fetch.isLoading)
+  
   return (
     <div>
      
@@ -85,6 +89,20 @@ export default function Forms() {
             <button  onClick={handleSubmit}>submit</button>
 
         </form>
+
+        <hr />
+         
+        {loading ? (
+                <p>Loading...</p>
+            ) : (
+                data.map((item: any) => (
+                    <div key={item.alpha2Code}>
+                        <h3>{item.name}</h3>
+                        <p>{item.capital}</p>
+                    </div>
+                ))
+            )}
+
     </div>
   )
 }

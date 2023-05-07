@@ -1,6 +1,8 @@
 import {Link} from 'react-router-dom'
-import {useSelector} from 'react-redux'
-import { FormInput } from '../assets/ReduxSlices/formSlice'//type inference
+import {useSelector, useDispatch} from 'react-redux'
+import { FormInput } from '../assets/ReduxSlices/formSlice'
+import { fetchAllData } from '../assets/ReduxSlices/fetchDataSlice'
+import { useEffect } from 'react'
 
 import Forms from './Forms'
 
@@ -9,9 +11,18 @@ interface RootProp{
 }
 
 export default function Home() {
-
+    
+    const dispatch = useDispatch<any>()
+  
     const {name, email, gender} = useSelector((state:RootProp)=>state.formInputs) 
+    
+  
 
+    useEffect(()=>{
+      dispatch(fetchAllData())
+    },[])
+
+  
 
   return (
     <div>
@@ -42,7 +53,18 @@ export default function Home() {
            
             <p>gender</p>: <label>{gender === ''? '' : gender}</label>
 
+            <br />
+            <br />
+
+          
         </div>
+
+        <hr />
+
+        <div>
+           
+        </div>
+        
     </div>
   )
 }
