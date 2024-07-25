@@ -92,7 +92,7 @@ export default function Forms() {
 
         <hr />
          
-        {loading ? (
+        {/* {loading ? (
                 <p>Loading...</p>
             ) : (
                 data.map((item: any) => (
@@ -101,7 +101,7 @@ export default function Forms() {
                         <p>{item.capital}</p>
                     </div>
                 ))
-            )}
+            )} */}
 
     </div>
   )
